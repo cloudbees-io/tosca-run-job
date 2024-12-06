@@ -1,0 +1,73 @@
+= CloudBees action: Invoke tosca run job
+
+Use this action to execute tosca cloud playlist and fetch the success status as output.
+
+
+== Inputs
+
+[cols="2a,1a,1a,3a",options="header"]
+.Input details
+|===
+
+| Input name
+| Data type
+| Required?
+| Description
+
+| `tosca_cloud_base_url`
+| String
+| Yes
+| The URL of Tosca cloud.
+
+| `tosca_auth_url`
+| String
+| Yes
+| The auth URL which will be available on swagger UI.
+
+| `client_id`
+| String
+| Yes
+| Tosca cloud api client-id.
+
+| `client_secret`
+| String
+| Yes
+| Tosca cloud api client-secret.
+
+| `playlist_name`
+| String
+| Yes
+| Playlist name to be executed.
+
+| `workspace`
+| String
+| Yes
+| Workspace name.
+
+|===
+
+== Usage examples
+
+[source,yaml]
+----
+      - name: Trigger tosca actions
+        uses: cloudbees-io/tosca-run-job@v1
+        with:
+          tosca_cloud_base_url: "https://your-company.my.tricentis.com/"
+          tosca_auth_url: "https://your-company.okta.com/oauth2/default/v1/token"
+          client_id: ${{ secrets.TOSCA_CLIENT_ID }}
+          client_secret: ${{ secrets.TOSCA_CLIENT_SECRET }}
+          playlist_name: "sample playlist"
+          workspace: "sample workspace"
+----
+
+
+== License
+
+This code is made available under the 
+link:https://opensource.org/license/mit/[MIT license].
+
+== References
+
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform-actions/latest/[using actions in CloudBees workflows].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform/latest/[the CloudBees platform].

@@ -1,0 +1,40 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: cbci build actions
+inputs:
+  tosca_cloud_base_url:
+    description: 'tosca public REST-API url'
+    required: true
+    default: ''
+  tosca_auth_url:
+    description: 'tosca auth url'
+    required: true
+    default: ''
+  client_id:
+    description: 'tosca cloud api client id'
+    required: true
+    default: ''
+  client_secret:
+    description: 'tosca cloud api client secret'
+    required: true
+    default: ''
+  playlist_name:
+    description: 'playlist name to be executed'
+    required: true
+    default: ''
+  workspace:
+    description: 'workspace name'
+    required: true
+    default: ''
+  
+runs:
+  using: composite
+  steps:
+    - id: invoke-tosca-actions
+      name: invoke-tosca-actions
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/tosca-actions:main-4282a8123a581c619d92c079bb4e6dad5087b0f4
+      shell: sh
+      run: |
+        set -x
+        cd /app
+        ./tosca_actions_app invoke -v '{"MetaInfo":{"ToscaCloudBaseURL":"${{ inputs.tosca_cloud_base_url }}","ToscaAuthURL":"${{inputs.tosca_auth_url}}","ClientID":"${{secrets.TOSCA_CLIENT_ID}}","ClientSecret":"${{secrets.TOSCA_CLIENT_SECRET}}","PlaylistName":"${{ inputs.playlist_name }}","Workspace":"${{ inputs.workspace }}"}}'
