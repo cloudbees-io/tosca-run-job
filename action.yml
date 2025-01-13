@@ -32,7 +32,7 @@ runs:
   steps:
     - id: invoke-tosca-actions
       name: invoke-tosca-actions
-      uses: docker://public.ecr.aws/l7o7z1g8/actions/tosca-actions:main-4282a8123a581c619d92c079bb4e6dad5087b0f4
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/tosca-actions:main-85324f876d6651e6df2177d901a012817fd68670
       shell: sh
       run: |
         set -x
