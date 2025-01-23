@@ -1,7 +1,11 @@
-= CloudBees action: Invoke tosca run job
+= CloudBees action: Deploy with Tosca
 
-Use this action to execute tosca cloud playlist and fetch the success status as output.
+Use this action to execute the Tricentis Tosca cloud playlist, a software testing tool that automates end-to-end testing for software applications.
 
+[NOTE]
+====
+You must use the link:https://github.com/cloudbees-io/publish-test-results[Publish test results] action to populate the *Test Insights* dashboard with Tosca testing results.
+====
 
 == Inputs
 
@@ -17,40 +21,40 @@ Use this action to execute tosca cloud playlist and fetch the success status as 
 | `tosca_cloud_base_url`
 | String
 | Yes
-| The URL of Tosca cloud.
+| The Tosca cloud URL.
 
 | `tosca_auth_url`
 | String
 | Yes
-| The auth URL which will be available on swagger UI.
+| The URL of the authorization server (available in the Swagger UI).
 
 | `client_id`
 | String
 | Yes
-| Tosca cloud api client-id.
+| The Tosca cloud API client ID.
 
 | `client_secret`
 | String
 | Yes
-| Tosca cloud api client-secret.
+| The Tosca cloud API token.
 
 | `playlist_name`
 | String
 | Yes
-| Playlist name to be executed.
+| The name of the playlist to be executed.
 
 | `workspace`
 | String
 | Yes
-| Workspace name.
+| The name of the workspace.
 
 |===
 
-== Usage examples
+== Usage example
 
 [source,yaml]
 ----
-      - name: Trigger tosca actions
+      - name: Test with Tosca
         uses: cloudbees-io/tosca-run-job@v1
         with:
           tosca_cloud_base_url: "https://your-company.my.tricentis.com/"
@@ -69,5 +73,5 @@ link:https://opensource.org/license/mit/[MIT license].
 
 == References
 
-* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform-actions/latest/[using actions in CloudBees workflows].
-* Learn about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform/latest/[the CloudBees platform].
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/actions[using actions in CloudBees workflows].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/[the CloudBees platform].
